@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://tiles/paredes.tres" type="TileSet" id=1]
+[ext_resource path="res://codigo/Mapa.gd" type="Script" id=2]
+
+[node name="Mapa" type="Node2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 10, 0, 0, 65536, 0, 0, 65546, 0, 0, 262144, 0, 0, 262154, 0, 0, 327680, 0, 0, 327690, 0, 0, 524288, 0, 0, 524298, 0, 0, 589824, 0, 0, 589834, 0, 0, 786432, 0, 0, 786442, 0, 0, 851968, 0, 0, 851978, 0, 0, 1048576, 0, 0, 1048586, 0, 0, 1114112, 0, 0, 1114122, 0, 0 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

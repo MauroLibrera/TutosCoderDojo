@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://tiles/paredes.tres" type="TileSet" id=1]
+[ext_resource path="res://codigo/AutoEnemigo.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 88, 120 )
+
+[node name="AutoEnemigo" type="Node2D"]
+position = Vector2( 280, 248 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( -32, 0 )
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( -131072, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, 0, 0, 0, 131071, 0, 0, 65537, 0, 0 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="AutoEnemigo" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AutoEnemigo"]
+shape = SubResource( 1 )
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

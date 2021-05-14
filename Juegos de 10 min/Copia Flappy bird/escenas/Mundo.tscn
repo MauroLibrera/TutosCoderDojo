@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://escenas/Paredes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player.png" type="Texture" id=2]
+[ext_resource path="res://codigo/jugador.gd" type="Script" id=3]
+[ext_resource path="res://luz.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.84009, 8.1353 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.73199, 8.87856 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 152 )
+
+[node name="Mundo" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.145098, 0.172549, 0.235294, 1 )
+position = Vector2( -8, 8 )
+scale = Vector2( 14, 14 )
+texture = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="NodoPared" parent="." instance=ExtResource( 1 )]
+position = Vector2( 280, 0 )
+
+[node name="NodoPared2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 440, 0 )
+
+[node name="NodoPared3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 400, 8 )
+
+[node name="NodoPared4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 360, -8 )
+
+[node name="NodoPared5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 320, 0 )
+
+[node name="NodoJugador" type="Node2D" parent="."]
+
+[node name="jugador" type="KinematicBody2D" parent="NodoJugador"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="NodoJugador/jugador"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NodoJugador/jugador"]
+shape = SubResource( 1 )
+
+[node name="Hitbox" type="Area2D" parent="NodoJugador/jugador"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NodoJugador/jugador/Hitbox"]
+shape = SubResource( 2 )
+
+[node name="resetter" type="Area2D" parent="NodoJugador/jugador"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NodoJugador/jugador/resetter"]
+position = Vector2( -296, 0 )
+shape = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="NodoJugador/jugador"]
+texture = ExtResource( 4 )
+texture_scale = 0.5
+shadow_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+margin_left = -16.0
+margin_top = -136.0
+margin_right = 16.0
+margin_bottom = -96.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="area_entered" from="NodoJugador/jugador/Hitbox" to="NodoJugador/jugador" method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="NodoJugador/jugador/Hitbox" to="NodoJugador/jugador" method="_on_Hitbox_body_entered"]
+[connection signal="body_entered" from="NodoJugador/jugador/resetter" to="NodoJugador/jugador" method="_on_resetter_body_entered"]

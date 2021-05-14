@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://escenas/cabeza.tscn" type="PackedScene" id=1]
+[ext_resource path="res://codigo/snake.gd" type="Script" id=2]
+
+[node name="snake" type="Node2D"]
+position = Vector2( 496, 272 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="contenedor_cuerpo" type="Node2D" parent="."]
+
+[node name="cabeza" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 0 )
