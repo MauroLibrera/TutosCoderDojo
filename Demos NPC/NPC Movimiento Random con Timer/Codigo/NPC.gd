@@ -22,7 +22,6 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	print(timer.time_left)
 	match estado_actual:
 		acciones.ELEGIR:
 			elegir_destino();

@@ -15,6 +15,9 @@ export var rapidez = 200
 
 var velocidad = Vector2()
 
+var empujar_atras = 750
+var empujar_arriba = 100
+
 func _ready():
 	pass 
 
@@ -47,4 +50,12 @@ func salto():
 	elif is_on_wall():
 		velocidad.y = 0
 		velocidad.y += SALTO.y * salto_v
-		
+
+func golpe():
+	pass
+	pass
+
+
+func _on_hitbox_jugador_area_entered(area):
+	if area.name == "hitbox":
+		golpe()

@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Carreras"
-run/main_scene="res://escenas/carrera.tscn"
+run/main_scene="res://escenas/Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Autoload="*res://codigo/Autoload.gd"
 
 [display]
 
